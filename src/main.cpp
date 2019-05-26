@@ -26,6 +26,7 @@ void usage(const char* progName) {
 	printf("\t%s pwm <gpio> <freq in Hz> <duty cycle percentage>\n", progName);
 	printf("\t%s pulses <gpio> <path_pulses_file> <repeats>\n",progName);
 	printf("\n");
+	printf("DEVICE_TYPE = %s\n", DEVICE_TYPE);
 }
 
 void print(int verbosity, char* cmd, int pin, char* val)
