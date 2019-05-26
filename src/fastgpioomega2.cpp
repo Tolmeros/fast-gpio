@@ -14,23 +14,29 @@ FastGpioOmega2::~FastGpioOmega2(void)
 void FastGpioOmega2::setGpioOffset(int gpio){
 	int mod;
 	mod = gpio / 32;
-	if(mod == 0){
-		this->ctrlOffset = REGISTER_CTRL0_OFFSET;
-		this->dataOffset = REGISTER_DATA0_OFFSET;
-		this->dataSetOffset = REGISTER_DSET0_OFFSET;
-		this->dataClrOffset = REGISTER_DCLR0_OFFSET;
+	switch (mod) {
+		case 0: {
+			this->ctrlOffset = REGISTER_CTRL0_OFFSET;
+			this->dataOffset = REGISTER_DATA0_OFFSET;
+			this->dataSetOffset = REGISTER_DSET0_OFFSET;
+			this->dataClrOffset = REGISTER_DCLR0_OFFSET;
+			break;
+		}
+		case 1: {
+			this->ctrlOffset = REGISTER_CTRL1_OFFSET;
+			this->dataOffset = REGISTER_DATA1_OFFSET;
+			this->dataSetOffset = REGISTER_DSET1_OFFSET;
+			this->dataClrOffset = REGISTER_DCLR1_OFFSET;
+			break;
+		}
+		case 2: {
+			this->ctrlOffset = REGISTER_CTRL2_OFFSET;
+			this->dataOffset = REGISTER_DATA2_OFFSET;
+			this->dataSetOffset = REGISTER_DSET2_OFFSET;
+			this->dataClrOffset = REGISTER_DCLR2_OFFSET;
+		}
 	}
-	else if(mod == 1){
-		this->ctrlOffset = REGISTER_CTRL1_OFFSET;
-		this->dataOffset = REGISTER_DATA1_OFFSET;
-		this->dataSetOffset = REGISTER_DSET1_OFFSET;
-		this->dataClrOffset = REGISTER_DCLR1_OFFSET;
-	} else{
-		this->ctrlOffset = REGISTER_CTRL2_OFFSET;
-		this->dataOffset = REGISTER_DATA2_OFFSET;
-		this->dataSetOffset = REGISTER_DSET2_OFFSET;
-		this->dataClrOffset = REGISTER_DCLR2_OFFSET;
-	}
+
 }
 // public functions
 int FastGpioOmega2::SetDirection(int pinNum, int bOutput)
